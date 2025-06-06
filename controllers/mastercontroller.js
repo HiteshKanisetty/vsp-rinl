@@ -300,7 +300,7 @@ exports.generateQR = async (req, res) => {
   const memoNumber = req.params.memoNumber;
   // The URL that will be encoded in the QR (mobile-friendly memo view)
   const ip = getLocalIp();
-  const qrDataUrl = `http://${ip}:2000/mobile-memo/${memoNumber}`;
+  const qrDataUrl = `https://vsp-rinl-production.up.railway.app/mobile-memo/${memoNumber}`;
   try {
     const qrImage = await QRCode.toDataURL(qrDataUrl);
     res.render("master-dash/qr", {

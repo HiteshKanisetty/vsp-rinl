@@ -1020,9 +1020,7 @@
 
           try {
             const response = await fetch(
-              `http://localhost:2000/memo?memo=${encodeURIComponent(
-                memoNumber
-              )}`
+              `/memo?memo=${encodeURIComponent(memoNumber)}`
             );
             if (!response.ok) {
               if (response.status === 404) {
@@ -1327,7 +1325,7 @@
 
             // Fetch wagons from Express API
             try {
-              const response = await fetch("http://localhost:2000/all-wagons");
+              const response = await fetch("/all-wagons");
               if (!response.ok) throw new Error("Failed to fetch wagons");
               const wagons = await response.json();
 
