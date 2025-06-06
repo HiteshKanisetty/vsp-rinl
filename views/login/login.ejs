@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RINL-VSP - Login</title>
+    <link rel="stylesheet" href="/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <div class="header-content">
+          <div class="logo-section">
+            <i class="fas fa-industry"></i>
+            <div class="title-section">
+              <h1>RASHTRIYA ISPAT NIGAM LIMITED</h1>
+              <p>Visakhapatnam Steel Plant</p>
+            </div>
+          </div>
+          <div class="system-info">
+            <p>Material Management System</p>
+            <p class="update-info">Last Updated: May 2025</p>
+          </div>
+        </div>
+        <div class="sub-header">
+          <h2>RAKE PLACEMENT MEMO SYSTEM</h2>
+        </div>
+      </header>
+
+      <main class="login-container">
+        <div class="login-box">
+          <h2>Employee Login</h2>
+          <% if (typeof message !== "undefined" && message) { %>
+          <div class="login-error" style="color: red; margin-bottom: 10px">
+            <%= message %>
+          </div>
+          <% } %>
+          <form class="login-form" action="/" method="POST">
+            <div class="form-group">
+              <label for="username">Employee ID</label>
+              <div class="input-with-icon">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Enter your employee ID"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <br />
+              <label>
+                <input type="checkbox" id="showPassword" />
+                Show Password
+              </label>
+            </div>
+            <div class="form-group remember-forgot">
+              <a href="/forgot" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+          </form>
+          <div class="login-footer">
+            <p>For technical support, contact:</p>
+            <p>it.support@vizagsteel.com</p>
+          </div>
+        </div>
+      </main>
+
+      <footer class="main-footer">
+        <p>
+          &copy; 2025 Rashtriya Ispat Nigam Limited - Visakhapatnam Steel Plant.
+          All rights reserved.
+        </p>
+      </footer>
+    </div>
+    <script>
+      document
+        .getElementById("showPassword")
+        .addEventListener("change", function () {
+          const pwd = document.getElementById("password");
+          pwd.type = this.checked ? "text" : "password";
+        });
+    </script>
+  </body>
+</html>

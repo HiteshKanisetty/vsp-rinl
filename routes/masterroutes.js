@@ -1,0 +1,16 @@
+const express = require("express");
+const router = express.Router();
+const masterController = require("../controllers/mastercontroller");
+router.post("/newmemo", masterController.postmemo);
+router.get("/memo", masterController.getMemoByNumber);
+router.post("/loadingcompleted", masterController.postLoadingCompleted);
+router.get("/new-form", masterController.getnewform);
+router.post("/new-wagon", masterController.postnewwagon);
+router.get("/all-wagons", masterController.getAllWagons);
+router.get("/all-memo-numbers", masterController.getAllMemoNumbers);
+router.get("/weight-report", masterController.getWeightReport);
+router.get("/latest", masterController.getLatestMemoNumber);
+router.post("/acknowledge", masterController.postacknowledge);
+router.get("/mobile-memo/:memoNumber", masterController.getmobile);
+router.get("/generate-qr/:memoNumber", masterController.generateQR);
+module.exports = router;

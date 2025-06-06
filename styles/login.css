@@ -1,0 +1,246 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.main-header {
+  background: linear-gradient(to right, #1e4976, #2b5a8c);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-section i {
+  font-size: 2.5rem;
+  color: #ffd700;
+}
+
+.title-section h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.title-section p {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.system-info {
+  text-align: right;
+}
+
+.system-info .update-info {
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  margin-top: 0.25rem;
+}
+
+.sub-header {
+  background-color: #c75000;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.sub-header h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Login Container Styles */
+.login-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 73, 118, 0.1),
+    rgba(199, 80, 0, 0.1)
+  );
+}
+
+.login-box {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border-top: 4px solid #1e4976;
+}
+
+.login-box h2 {
+  color: #1e4976;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.input-with-icon input::placeholder {
+  color: #a0aec0;
+}
+
+.input-with-icon input:focus {
+  outline: none;
+  border-color: #1e4976;
+  box-shadow: 0 0 0 3px rgba(30, 73, 118, 0.1);
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #1e4976;
+}
+
+.forgot-password {
+  color: #1e4976;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #c75000;
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1e4976;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #2b5a8c;
+}
+
+/* Login Footer Styles */
+.login-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.login-footer p:first-child {
+  margin-bottom: 0.25rem;
+}
+
+/* Main Footer Styles */
+.main-footer {
+  background-color: #1e4976;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .system-info {
+    text-align: center;
+  }
+
+  .login-box {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .title-section h1 {
+    font-size: 1.2rem;
+  }
+}

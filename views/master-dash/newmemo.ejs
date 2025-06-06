@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="newmemo.css" />
+    <title>RAKE PLACEMENT MEMO</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Dropdown Menu -->
+      <div class="dropdown">
+        <button class="dropdown-btn">Menu ▼</button>
+        <div class="dropdown-content">
+          <a href="#" id="option1">Option 1 (Placement Memo)</a>
+          <a href="#" id="option2">Option 2 (Placement Acknowledgement)</a>
+        </div>
+      </div>
+
+      <!-- View 1: Placement Memo -->
+      <form action="/newmemo" method="post">
+        <div id="view1" class="view1">
+          <div class="memo-container">
+            <div class="memo-header">
+              <h1>RAKE PLACEMENT MEMO FOR INTERNAL MOVEMENT</h1>
+            </div>
+
+            <div class="form-fields">
+              <table>
+                <input
+                  type="hidden"
+                  name="isUpdate"
+                  id="isUpdate"
+                  value="false"
+                />
+                <tr class="place-number">
+                  <td>Placement Memo No.</td>
+                  <td>
+                    <input
+                      class="clear ip-place"
+                      type="text"
+                      id="memoNumber-1"
+                      name="memoNo"
+                      readonly
+                    />
+                  </td>
+                </tr>
+                <div
+                  id="memoNumberPopup-1"
+                  class="popup-list"
+                  style="
+                    display: none;
+                    position: absolute;
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    z-index: 1000;
+                    max-height: 200px;
+                    overflow: auto;
+                  "
+                ></div>
+                <tr>
+                  <td>Date :</td>
+                  <td>
+                    <input
+                      class="clear"
+                      type="date"
+                      name="memoDate"
+                      id="memoDate"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Loading Point :</td>
+                  <td>
+                    <div class="location-input-group">
+                      <input
+                        type="text"
+                        class="clear loading-point"
+                        name="loadingPoint"
+                      />
+                      <button class="location-btn" data-popup="loadingPopup">
+                        ▼
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="location-input-group">
+                      <input
+                        type="text"
+                        class="clear loading-point-desc"
+                        name="loadingPointDesc"
+                      />
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Unloading Point :</td>
+                  <td>
+                    <div class="location-input-group">
+                      <input
+                        type="text"
+                        class="clear unloading-point"
+                        name="unloadingPoint"
+                      />
+                      <button class="location-btn" data-popup="unloadingPopup">
+                        ▼
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="location-input-group">
+                      <input
+                        type="text"
+                        class="clear unloading-point-desc"
+                        name="unloadingPointDesc"
+                      />
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <table class="wagon-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>S...</th>
+                  <th>Wagon No.</th>
+                  <th>Wagon Type</th>
+                  <th>Tare</th>
+                  <th>Date</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <input
+                  type="hidden"
+                  id="acknowledged"
+                  value="<%= memo && memo.acknowledged ? 'true' : 'false' %>"
+                />
+                <tr>
+                  <td><input type="checkbox" name="selected_0" /></td>
+                  <td>1.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_0"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="0">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_0"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_0" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_0" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_0" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_1" /></td>
+
+                  <td>2.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_1"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="1">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_1"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_1" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_1" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_1" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_2" /></td>
+
+                  <td>3.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_2"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="2">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_2"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_2" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_2" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_2" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_3" /></td>
+
+                  <td>4.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_3"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="3">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_3"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_3" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_3" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_3" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_4" /></td>
+
+                  <td>5.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_4"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="4">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_4"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_4" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_4" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_4" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_5" /></td>
+
+                  <td>6.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_5"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="5">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_5"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_5" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_5" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_5" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_6" /></td>
+
+                  <td>7.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_6"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="6">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_6"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_6" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_6" />
+                  </td>
+                  <td><input type="text" name="clear remarks_6" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_7" /></td>
+
+                  <td>8.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="clear wagonNo_7"
+                        class="wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="7">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_7"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_7" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_7" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_7" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_8" /></td>
+
+                  <td>9.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_8"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="8">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_8"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_8" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_8" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_8" /></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox" name="selected_9" /></td>
+
+                  <td>10.</td>
+                  <td>
+                    <div class="wagon-number-container">
+                      <input
+                        type="text"
+                        name="wagonNo_9"
+                        class="clear wagon-number"
+                      />
+
+                      <button class="action-btn" data-row="9">▼</button>
+                    </div>
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear wagon-Type"
+                      name="wagonType_9"
+                    />
+                  </td>
+                  <td><input type="text" class="clear" name="tare_9" /></td>
+                  <td>
+                    <input type="text" class="clear wagon-Date" name="date_9" />
+                  </td>
+                  <td><input type="text" class="clear" name="remarks_9" /></td>
+                </tr>
+              </tbody>
+            </table>
+            <div id="ack-confirm-popup" style="display: none">
+              <div class="ack-confirm-content">
+                <div class="ack-confirm-message">
+                  Are you sure you want to acknowledge this memo?
+                </div>
+                <div class="ack-confirm-actions">
+                  <button id="ack-confirm-yes">Yes</button>
+                  <button id="ack-confirm-no">No</button>
+                </div>
+              </div>
+            </div>
+            <div class="popup-overlay" id="loadingPopup">
+              <div class="popup-content">
+                <div class="popup-header">Select Loading Point</div>
+                <div class="popup-list">
+                  <div
+                    class="popup-item"
+                    data-code="LP001"
+                    data-desc="Main Terminal"
+                  >
+                    LP001 - Main Terminal
+                  </div>
+                  <div
+                    class="popup-item"
+                    data-code="LP002"
+                    data-desc="North Station"
+                  >
+                    LP002 - North Station
+                  </div>
+                  <div
+                    class="popup-item"
+                    data-code="LP003"
+                    data-desc="South Depot"
+                  >
+                    LP003 - South Depot
+                  </div>
+                  <div
+                    class="popup-item"
+                    data-code="LP004"
+                    data-desc="East Junction"
+                  >
+                    LP004 - East Junction
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="popup-overlay" id="unloadingPopup">
+              <div class="popup-content">
+                <div class="popup-header">Select Unloading Point</div>
+                <div class="popup-list">
+                  <div
+                    class="popup-item"
+                    data-code="UP001"
+                    data-desc="Central Hub"
+                  >
+                    UP001 - Central Hub
+                  </div>
+                  <div
+                    class="popup-item"
+                    data-code="UP002"
+                    data-desc="West Terminal"
+                  >
+                    UP002 - West Terminal
+                  </div>
+                  <div
+                    class="popup-item"
+                    data-code="UP003"
+                    data-desc="Port Station"
+                  >
+                    UP003 - Port Station
+                  </div>
+                  <div
+                    class="popup-item"
+                    data-code="UP004"
+                    data-desc="City Depot"
+                  >
+                    UP004 - City Depot
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Shared Popup Window -->
+            <div class="popup-overlay" id="wagonPopup">
+              <div class="popup-content">
+                <div class="popup-header">
+                  Select Wagon
+                  <a class="add-wagon-btn" href="/new-form">
+                    <span>+</span>
+                  </a>
+                </div>
+                <div class="popup-list" id="wagonPopupList"></div>
+              </div>
+            </div>
+          </div>
+          <div class="button-group">
+            <button type="button" class="clear-btn">Clear</button>
+            <button type="button" class="confirm">Confirm</button>
+            <button type="button" class="dis" style="display: none">
+              Display
+            </button>
+            <button type="submit" class="header-save">Save</button>
+            <button type="button" class="print">Placement Memo Report</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- View 2: Loading Completed -->
+      <form action="/loadingcompleted" method="post">
+        <div id="view2" class="view2 hidden">
+          <div class="memo-container">
+            <div class="memo-header">
+              <h1>RAKE PLACEMENT ACKNOWLEDGEMENT</h1>
+            </div>
+            <div class="loading-info">
+              <table>
+                <tr>
+                  <td>Placement Memo No.</td>
+                  <td>
+                    <input
+                      type="text"
+                      id="memoNumber-2"
+                      class="clear2"
+                      name="memoNumber"
+                      value="<%= memo ? memo.memoNumber : '' %>"
+                    />
+                  </td>
+                </tr>
+                <div
+                  id="memoNumberPopup-2"
+                  class="popup-list"
+                  style="
+                    display: none;
+                    position: absolute;
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    z-index: 1000;
+                    max-height: 200px;
+                    overflow: auto;
+                  "
+                ></div>
+                <tr>
+                  <td>Date :</td>
+                  <td>
+                    <input
+                      type="date"
+                      id="date"
+                      class="clear2"
+                      name="date"
+                      value="<%= memo && memo.date ? memo.date.toISOString().split('T')[0] : '' %>"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Loading Point :</td>
+                  <td>
+                    <input
+                      class="clear2"
+                      type="text"
+                      id="loadingPoint1"
+                      name="loadingPoint1"
+                      value="<%= memo && memo.loadingPoint ? memo.loadingPoint.code : '' %>"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="loadingPoint2"
+                      class="clear2"
+                      name="loadingPoint2"
+                      value="<%= memo && memo.loadingPoint ? memo.loadingPoint.description : '' %>"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Unloading Point :</td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear2"
+                      id="unloadingPoint1"
+                      name="unloadingPoint1"
+                      value="<%= memo && memo.unloadingPoint ? memo.unloadingPoint.code : '' %>"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      class="clear2"
+                      id="unloadingPoint2"
+                      name="unloadingPoint2"
+                      value="<%= memo && memo.unloadingPoint ? memo.unloadingPoint.description : '' %>"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="loading-completed">
+              <button type="button" id="ack">Acknowledgement</button>
+              <button type="button" id="load" style="display: none">
+                Loading completed
+              </button>
+              <a id="generateQR" href="#" style="display: none">
+                Generate QR
+              </a>
+              <!-- <div id="qrContainer" style="margin-top: 16px"></div> -->
+              <table class="wagon-table" id="wagonTable">
+                <thead>
+                  <tr>
+                    <th style="width: 30px">SNo.</th>
+                    <th style="width: 100px">Wagon No.</th>
+                    <th>Wagon type</th>
+                    <th>Tare</th>
+                    <th>Challan No.</th>
+                    <th>Challan Date</th>
+                    <th>Release Dt</th>
+                    <th>Release Time</th>
+                    <th>Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (let i = 0; i < 10; i++) { %>
+                  <tr>
+                    <td style="width: 30px"><%= i + 1 %></td>
+                    <td>
+                      <input
+                        type="text"
+                        name="wagonNumber<%=i%>"
+                        class="clear2"
+                        style="width: 100px"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].wagonNumber : '' %>"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="wagonType<%=i%>"
+                        class="clear2"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].wagonType : '' %>"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="tare<%=i%>"
+                        class="clear2"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].tare : '' %>"
+                      />
+                    </td>
+                    <td class="challan-td" style="visibility: hidden">
+                      <input
+                        type="text"
+                        name="challanNumber<%=i%>"
+                        class="clear2 challan-number"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].challan_number : '' %>"
+                        readonly
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="challanDate<%=i%>"
+                        class="clear2"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].wagondate : '' %>"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="date"
+                        name="releaseDate<%=i%>"
+                        class="clear2 releasedate"
+                        value="<%= memo && memo.wagons && memo.wagons[i] && memo.wagons[i].releaseDate ? (memo.wagons[i].releaseDate.includes('-') ? memo.wagons[i].releaseDate.split('T')[0] : '') : '' %>"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="time"
+                        name="releaseTime<%=i%>"
+                        class="clear2 releasetime"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].releaseTime : '00:00:00' %>"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="remarks<%=i%>"
+                        class="clear2"
+                        value="<%= memo && memo.wagons && memo.wagons[i] ? memo.wagons[i].remarks : '' %>"
+                      />
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="button" class="clear-bt">Clear</button>
+            <button type="button" id="displayBtn">Display</button>
+            <button type="submit">Save</button>
+            <button type="button" class="print1">Placement Memo Report</button>
+            <a class="wt" id="weightReportLink" style="display: none" href="#"
+              >weight-report</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // document
+        //   .getElementById("ack")
+        //   .addEventListener("click", async function () {
+        //     // Get the memo number from the input in View 2
+        //     const memoNumber = document
+        //       .getElementById("memoNumber-2")
+        //       .value.trim();
+        //     if (!memoNumber) {
+        //       alert("No memo number found!");
+        //       return;
+        //     }
+
+        //     try {
+        //       const response = await fetch("/acknowledge", {
+        //         method: "POST",
+        //         headers: {
+        //           "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //           memoNumber: memoNumber,
+        //           ack: true,
+        //         }),
+        //       });
+
+        //       if (response.ok) {
+        //         alert("Memo acknowledged!");
+        //         // Optionally, disable editing in View 1 here
+        //       } else {
+        //         alert("Failed to acknowledge memo.");
+        //       }
+        //     } catch (err) {
+        //       alert("Error: " + err.message);
+        //     }
+        //   });
+        // document.getElementById("ack").addEventListener("click", function () {
+        //   document.querySelectorAll(".challan-td").forEach((td) => {
+        //     td.style.visibility = "visible";
+        //   });
+        //   document.getElementById("load").style.display = "";
+        //   document.getElementById("ack").style.display = "none";
+        // });
+        const memoInput1 = document.getElementById("memoNumber-1");
+
+        const popup1 = document.getElementById("memoNumberPopup-1");
+
+        memoInput1.addEventListener("focus", async function (e) {
+          // Position the popup below the input
+          const rect = memoInput1.getBoundingClientRect();
+          popup1.style.left = rect.left + "px";
+          popup1.style.top = rect.bottom + window.scrollY + "px";
+          popup1.style.width = rect.width + "px";
+
+          // Fetch memo numbers
+          try {
+            const response = await fetch("/all-memo-numbers");
+            const memoNumbers = await response.json();
+            popup1.innerHTML = "";
+            memoNumbers.forEach((num) => {
+              const div = document.createElement("div");
+              div.className = "popup-item";
+              div.textContent = num;
+              div.style.padding = "4px 8px";
+              div.style.cursor = "pointer";
+              div.addEventListener("mousedown", function () {
+                memoInput1.value = num;
+                popup1.style.display = "none";
+                document.querySelector(".confirm").style.display = "none";
+                document.querySelector(".dis").style.display = "block";
+              });
+              popup1.appendChild(div);
+            });
+            popup1.style.display = "block";
+          } catch {
+            popup1.innerHTML =
+              "<div style='padding:4px 8px;'>Error loading memos</div>";
+            popup1.style.display = "block";
+          }
+        });
+
+        // Hide popup when clicking outside
+        document.addEventListener("mousedown", function (e) {
+          if (!popup1.contains(e.target) && e.target !== memoInput1) {
+            popup1.style.display = "none";
+          }
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const memoInput2 = document.getElementById("memoNumber-2");
+        const popup2 = document.getElementById("memoNumberPopup-2");
+
+        memoInput2.addEventListener("focus", async function (e) {
+          // Position the popup below the input
+          const rect = memoInput2.getBoundingClientRect();
+          popup2.style.left = rect.left + "px";
+          popup2.style.top = rect.bottom + window.scrollY + "px";
+          popup2.style.width = rect.width + "px";
+
+          // Fetch memo numbers
+          try {
+            const response = await fetch("/all-memo-numbers");
+            const memoNumbers = await response.json();
+            popup2.innerHTML = "";
+            memoNumbers.forEach((num) => {
+              const div = document.createElement("div");
+              div.className = "popup-item";
+              div.textContent = num;
+              div.style.padding = "4px 8px";
+              div.style.cursor = "pointer";
+              div.addEventListener("mousedown", function () {
+                memoInput2.value = num;
+                popup2.style.display = "none";
+              });
+              popup2.appendChild(div);
+            });
+            popup2.style.display = "block";
+          } catch {
+            popup2.innerHTML =
+              "<div style='padding:4px 8px;'>Error loading memos</div>";
+            popup2.style.display = "block";
+          }
+        });
+        // Hide popup when clicking outside
+        document.addEventListener("mousedown", function (e) {
+          if (!popup2.contains(e.target) && e.target !== memoInput2) {
+            popup2.style.display = "none";
+          }
+        });
+      });
+      document;
+      document
+        .querySelector(".confirm")
+        .addEventListener("click", async function () {
+          document.getElementById("isUpdate").value = "false";
+          const memoNumberInput = document.querySelector(".place-number");
+          var ip = document.querySelector(".ip-place");
+
+          try {
+            const response = await fetch("/latest");
+            const data = await response.json();
+
+            let latestNumber = parseInt(data.latestMemoNumber, 10);
+            if (isNaN(latestNumber)) latestNumber = 1000510;
+            console.log(data);
+            console.log(latestNumber); // fallback if none exists
+            const newNumber = (latestNumber + 1).toString();
+            memoNumberInput.style.display = "flex";
+            ip.value = newNumber;
+            // Disable the confirm button
+          } catch (err) {
+            // fallback if fetch fails
+            memoNumberInput.value = "1000001";
+          }
+          this.disabled = true; // Disable the confirm button
+          document.querySelector(".confirm").style.display = "none"; // Show the placement memo number row
+        });
+      // document
+      //   .querySelector(".place-btn")
+      //   .addEventListener("click", async function (e) {
+      //     e.preventDefault();
+      //     // Fetch the latest memo number from the backend
+      //     try {
+      //       const response = await fetch("/latest");
+      //       const data = await response.json();
+      //       let latestNumber = parseInt(data.latestMemoNumber, 10);
+      //       if (isNaN(latestNumber)) latestNumber = 1000000; // fallback if none exists
+      //       const newNumber = (latestNumber + 1).toString();
+      //       this.previousElementSibling.value = newNumber;
+      //     } catch (err) {
+      //       // fallback if fetch fails
+      //       this.previousElementSibling.value = "1000001";
+      //     }
+      //     this.disabled = true;
+      //   });
+      const usedWagons = new Set();
+      document
+        .querySelector(".dis")
+        .addEventListener("click", async function () {
+          document.getElementById("isUpdate").value = "true";
+          document.querySelector(".dis").style.display = "none";
+          document.querySelector(".confirm").style.display = "none";
+          const memoNumber = document.querySelector(".ip-place").value.trim();
+          if (!memoNumber) {
+            alert("Please enter Placement Memo No.");
+            return;
+          }
+
+          try {
+            const response = await fetch(
+              `/memo?memo=${encodeURIComponent(memoNumber)}`
+            );
+            if (!response.ok) {
+              alert("Memo not found");
+              return;
+            }
+            const memo = await response.json();
+            usedWagons.clear();
+            if (memo.wagons) {
+              memo.wagons.forEach((wagon) => {
+                if (wagon.wagonNumber) usedWagons.add(wagon.wagonNumber);
+              });
+            }
+            if (memo.acknowledged) {
+              // Hide the Save button
+              document.querySelector(".header-save").style.display = "none";
+              // Optionally, hide or disable other editing controls as well
+            }
+
+            // Fill your form fields with returned memo data
+            // Example for date:
+            const memoDateInput = document.getElementById("memoDate");
+            if (memoDateInput && memo.date) {
+              memoDateInput.value = memo.date.split("T")[0];
+            }
+            // Example for loading point:
+            if (memo.loadingPoint) {
+              document.querySelector(".loading-point").value =
+                memo.loadingPoint.code || "";
+              document.querySelector(".loading-point-desc").value =
+                memo.loadingPoint.description || "";
+            }
+            if (memo.unloadingPoint) {
+              document.querySelector(".unloading-point").value =
+                memo.unloadingPoint.code || "";
+              document.querySelector(".unloading-point-desc").value =
+                memo.unloadingPoint.description || "";
+            }
+            // Fill wagons table
+            if (memo.wagons) {
+              memo.wagons.forEach((wagon, i) => {
+                const wagonNo = document.querySelector(`[name="wagonNo_${i}"]`);
+                if (wagonNo) wagonNo.value = wagon.wagonNumber || "";
+
+                const wagonType = document.querySelector(
+                  `[name="wagonType_${i}"]`
+                );
+                if (wagonType) wagonType.value = wagon.wagonType || "";
+
+                const tare = document.querySelector(`[name="tare_${i}"]`);
+                if (tare) tare.value = wagon.tare || "";
+
+                const date = document.querySelector(`[name="date_${i}"]`);
+                if (date) date.value = wagon.wagondate || "";
+
+                const remarks = document.querySelector(`[name="remarks_${i}"]`);
+                if (remarks) remarks.value = wagon.remarks || "";
+
+                const selected = document.querySelector(
+                  `[name="selected_${i}"]`
+                );
+                if (selected) selected.checked = !!wagon.selected;
+              });
+            }
+          } catch (error) {
+            alert("Failed to fetch memo: " + error.message);
+          }
+        });
+      document
+        .getElementById("displayBtn")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+
+          document.getElementById("displayBtn").style.display = "none";
+          const memoNumber = document
+            .getElementById("memoNumber-2")
+            .value.trim();
+          // After memo is loaded and processed
+          document.getElementById("weightReportLink").href =
+            "/weight-report?id=" + encodeURIComponent(memoNumber);
+          if (!memoNumber) {
+            alert("Please enter Placement Memo No.");
+            return;
+          }
+
+          // Helper to convert "dd.MM.yyyy" to "yyyy-MM-dd" for <input type="date">
+          function toInputDateFormat(dateStr) {
+            if (!dateStr) return "";
+            if (dateStr.includes("-")) {
+              // If already in ISO format, extract only the date part
+              return dateStr.split("T")[0];
+            }
+            const [day, month, year] = dateStr.split(".");
+            if (!day || !month || !year) return "";
+            return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+          }
+
+          try {
+            const response = await fetch(
+              `http://localhost:2000/memo?memo=${encodeURIComponent(
+                memoNumber
+              )}`
+            );
+            if (!response.ok) {
+              if (response.status === 404) {
+                alert("Memo not found");
+              } else {
+                alert("Error fetching memo");
+              }
+              return;
+            }
+            const memo = await response.json();
+            if (memo.acknowledged) {
+              // Hide the Acknowledge button
+              const ackBtn = document.getElementById("ack");
+              if (ackBtn) ackBtn.style.display = "none";
+
+              // Show and disable challan number fields
+              memo.wagons.forEach((wagon, index) => {
+                // Select the correct <td> for this row
+                const challanTd =
+                  document.querySelectorAll(".challan-td")[index];
+                if (challanTd) {
+                  challanTd.style.visibility = ""; // Show the cell
+                  // Find the input inside this <td>
+                  const challanInput = challanTd.querySelector(
+                    'input[name="challanNumber' + index + '"]'
+                  );
+                  if (challanInput) challanInput.readOnly = true;
+                }
+              });
+            }
+            // ...inside document.getElementById("displayBtn").addEventListener("click", async (e) => { ... }
+            if (!memo.acknowledged) {
+              // Show only the Acknowledge button
+              const ackBtn = document.getElementById("ack");
+              const loadBtn = document.getElementById("load");
+              if (ackBtn) ackBtn.style.display = "block";
+              if (loadBtn) loadBtn.style.display = "none";
+            }
+            // ...existing code...
+            const allReleased =
+              memo.wagons &&
+              memo.wagons.length &&
+              memo.wagons.every((w) => w.releaseDate && w.releaseTime);
+
+            if (allReleased) {
+              // Hide the Loading Completed button
+              const loadBtn = document.getElementById("load");
+              const wt = document.getElementById("weightReportLink");
+              if (wt) wt.style.display = "inline-block";
+
+              if (loadBtn) loadBtn.style.display = "none";
+              checkAndShowQRButton();
+
+              // Show and disable release date/time fields
+              memo.wagons.forEach((wagon, index) => {
+                const releaseDate = document.querySelector(
+                  `input[name="releaseDate${index}"]`
+                );
+                if (releaseDate) releaseDate.disabled = true;
+
+                const releaseTime = document.querySelector(
+                  `input[name="releaseTime${index}"]`
+                );
+                if (releaseTime) releaseTime.disabled = true;
+              });
+            } else {
+              // Show the Loading Completed button
+              const loadBtn = document.getElementById("load");
+              document.querySelector("#ack").addEventListener("click", () => {
+                if (loadBtn) loadBtn.style.display = "flex";
+              });
+            }
+            function checkAndShowQRButton() {
+              const ackBtn = document.getElementById("ack");
+              const loadBtn = document.getElementById("load");
+              const qrLink = document.getElementById("generateQR");
+              const memoNumber = document
+                .getElementById("memoNumber-2")
+                .value.trim();
+              if (
+                ackBtn &&
+                loadBtn &&
+                qrLink &&
+                ackBtn.style.display === "none" &&
+                loadBtn.style.display === "none" &&
+                memoNumber
+              ) {
+                qrLink.href = `/generate-qr/${encodeURIComponent(memoNumber)}`;
+                qrLink.style.display = "inline-block";
+              }
+            }
+            // Fill your form fields with returned memo data
+            const dateInput = document.getElementById("date");
+            if (dateInput) {
+              dateInput.value = toInputDateFormat(memo.date);
+            }
+            const loadingPoint1 = document.getElementById("loadingPoint1");
+            if (loadingPoint1)
+              loadingPoint1.value = memo.loadingPoint.code || "";
+            const loadingPoint2 = document.getElementById("loadingPoint2");
+            if (loadingPoint2)
+              loadingPoint2.value = memo.loadingPoint.description || "";
+            const unloadingPoint1 = document.getElementById("unloadingPoint1");
+            if (unloadingPoint1)
+              unloadingPoint1.value = memo.unloadingPoint.code || "";
+            const unloadingPoint2 = document.getElementById("unloadingPoint2");
+            if (unloadingPoint2)
+              unloadingPoint2.value = memo.unloadingPoint.description || "";
+
+            // Fill wagons table
+            // Fill wagons table
+            memo.wagons.forEach((wagon, index) => {
+              if (index <= 10) {
+                const selected = document.querySelector(
+                  `input[name="selected${index}"]`
+                );
+                if (selected) selected.checked = !!wagon.selected;
+
+                const wagonType = document.querySelector(
+                  `input[name="wagonType${index}"]`
+                );
+                if (wagonType) wagonType.value = wagon.wagonType || "";
+
+                const tare = document.querySelector(
+                  `input[name="tare${index}"]`
+                );
+                if (tare) tare.value = wagon.tare || "";
+
+                const wagonNumber = document.querySelector(
+                  `input[name="wagonNumber${index}"]`
+                );
+                if (wagonNumber) wagonNumber.value = wagon.wagonNumber || "";
+
+                const challanNumber = document.querySelector(
+                  `input[name="challanNumber${index}"]`
+                );
+                if (challanNumber)
+                  challanNumber.value = wagon.challan_number || "";
+
+                const wagonDate = document.querySelector(
+                  `input[name="challanDate${index}"]`
+                );
+                if (wagonDate)
+                  wagonDate.value = toInputDateFormat(wagon.wagondate);
+
+                const releaseDate = document.querySelector(
+                  `input[name="releaseDate${index}"]`
+                );
+                if (releaseDate)
+                  releaseDate.value = toInputDateFormat(wagon.releaseDate);
+
+                const releaseTime = document.querySelector(
+                  `input[name="releaseTime${index}"]`
+                );
+                if (releaseTime)
+                  releaseTime.value = wagon.releaseTime || "00:00:00";
+
+                const remarks = document.querySelector(
+                  `input[name="remarks${index}"]`
+                );
+                if (remarks) remarks.value = wagon.remarks || "";
+              }
+            });
+          } catch (error) {
+            alert("Failed to fetch memo: " + error.message);
+          }
+        });
+
+      document.getElementById("ack").addEventListener("click", function () {
+        document.querySelector("#load").style.display = "block";
+        // Show confirmation popup
+        showConfirmPopup(
+          "Are you sure you want to acknowledge this memo?",
+          async function onYes() {
+            document.querySelectorAll(".challan-td").forEach((td) => {
+              td.style.visibility = "visible";
+            });
+            document.getElementById("ack").style.display = "none";
+            const memoNumber = document
+              .getElementById("memoNumber-2")
+              .value.trim();
+            if (!memoNumber) {
+              alert("No memo number found!");
+              return;
+            }
+
+            try {
+              const response = await fetch("/acknowledge", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ memoNumber: memoNumber, ack: true }),
+              });
+
+              if (response.ok) {
+                document.getElementById("option2").click();
+                document.querySelector(".header-save").style.display = "none";
+                showAckPopup("This memo has been acknowledged.");
+              } else {
+                alert("Failed to acknowledge memo.");
+              }
+            } catch (err) {
+              alert("Error: " + err.message);
+            }
+          }
+        );
+      });
+      function showConfirmPopup(message, onYes) {
+        let popup = document.getElementById("confirm-ack-popup");
+        if (!popup) {
+          popup = document.createElement("div");
+          popup.id = "confirm-ack-popup";
+          popup.style.position = "fixed";
+          popup.style.top = "50%";
+          popup.style.left = "50%";
+          popup.style.transform = "translate(-50%, -50%)";
+          popup.style.background = "#fff";
+          popup.style.border = "2px solid #333";
+          popup.style.padding = "24px 32px";
+          popup.style.zIndex = "10000";
+          popup.style.boxShadow = "0 2px 12px rgba(0,0,0,0.2)";
+          popup.style.fontSize = "1.2em";
+          popup.style.color = "#222";
+          popup.style.textAlign = "center";
+          popup.innerHTML =
+            message +
+            '<br><br><button id="ack-yes">Yes</button> <button id="ack-no">No</button>';
+          document.body.appendChild(popup);
+
+          document.getElementById("ack-yes").onclick = function () {
+            popup.remove();
+            onYes();
+          };
+          document.getElementById("ack-no").onclick = function () {
+            popup.remove();
+            document.getElementById("ack").style.display = "block";
+          };
+        }
+      }
+
+      // Helper function to show a popup
+      function showAckPopup(message) {
+        let popup = document.getElementById("ack-popup");
+        if (!popup) {
+          popup = document.createElement("div");
+          popup.id = "ack-popup";
+          popup.style.position = "fixed";
+          popup.style.top = "50%";
+          popup.style.left = "50%";
+          popup.style.transform = "translate(-50%, -50%)";
+          popup.style.background = "#fff";
+          popup.style.border = "2px solid #c00";
+          popup.style.padding = "24px 32px";
+          popup.style.zIndex = "9999";
+          popup.style.boxShadow = "0 2px 12px rgba(0,0,0,0.2)";
+          popup.style.fontSize = "1.2em";
+          popup.style.color = "#c00";
+          popup.style.textAlign = "center";
+          popup.innerHTML =
+            message + '<br><br><button id="close-ack-popup">OK</button>';
+          document.body.appendChild(popup);
+          document.getElementById("close-ack-popup").onclick = function () {
+            popup.remove();
+          };
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const memoDateInput = document.getElementById("memoDate");
+        if (memoDateInput) {
+          const today = new Date().toISOString().split("T")[0];
+          memoDateInput.value = today;
+        }
+        // View Toggle Functionality
+        document
+          .getElementById("option1")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("view1").classList.remove("hidden");
+            document.getElementById("view2").classList.add("hidden");
+          });
+
+        document
+          .getElementById("option2")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("view1").classList.add("hidden");
+            document.getElementById("view2").classList.remove("hidden");
+          });
+
+        // View 1 Popup Functionality
+        // ...existing code...
+        const popup = document.getElementById("wagonPopup");
+        const popupList = document.getElementById("wagonPopupList");
+        let currentRow = null;
+        const rows = document.querySelectorAll(".view1 .wagon-table tbody tr");
+
+        document.querySelectorAll(".view1 .action-btn").forEach((button) => {
+          button.addEventListener("click", async function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            currentRow = parseInt(this.getAttribute("data-row"));
+
+            // Fetch wagons from Express API
+            try {
+              const response = await fetch("http://localhost:2000/all-wagons");
+              if (!response.ok) throw new Error("Failed to fetch wagons");
+              const wagons = await response.json();
+
+              // Clear previous list
+              popupList.innerHTML = "";
+
+              // Only show wagons not already used
+              wagons
+                .filter((wagon) => !usedWagons.has(wagon.wagonNumber))
+                .forEach((wagon) => {
+                  const div = document.createElement("div");
+                  div.className = "popup-item";
+                  div.setAttribute("data-wagon", wagon.wagonNumber);
+                  div.setAttribute("data-type", wagon.wagonType);
+
+                  div.textContent = `${wagon.wagonNumber} - ${wagon.wagonType}`;
+                  popupList.appendChild(div);
+                });
+
+              // Add click event to each new popup item
+              popupList.querySelectorAll(".popup-item").forEach((item) => {
+                item.addEventListener("click", function () {
+                  const wagonNumber = this.getAttribute("data-wagon");
+                  const wagonType = this.getAttribute("data-type");
+
+                  // Update the current row data
+                  if (currentRow !== null && rows[currentRow]) {
+                    // --- Remove the old wagon from usedWagons if present ---
+                    const wagonInput =
+                      rows[currentRow].cells[2].querySelector(".wagon-number");
+                    const oldWagon = wagonInput.value;
+                    if (oldWagon && usedWagons.has(oldWagon)) {
+                      usedWagons.delete(oldWagon);
+                    }
+
+                    // Set the new wagon
+                    wagonInput.value = wagonNumber;
+                    rows[currentRow].cells[3].querySelector(
+                      ".wagon-Type"
+                    ).value = wagonType;
+                    // Always use today's date
+                    const today = new Date().toISOString().split("T")[0];
+                    rows[currentRow].cells[5].querySelector(
+                      ".wagon-Date"
+                    ).value = today;
+
+                    // Add the new wagon to usedWagons
+                    usedWagons.add(wagonNumber);
+                  }
+
+                  // Remove this wagon from the popup
+                  this.remove();
+
+                  // Hide the popup
+                  popup.style.display = "none";
+                });
+              });
+
+              popup.style.display = "flex";
+            } catch (err) {
+              popupList.innerHTML = "<div>Error loading wagons</div>";
+              popup.style.display = "flex";
+            }
+          });
+        });
+        // Add click event to each popup item
+        // document.querySelectorAll(".popup-item").forEach((item) => {
+        //   item.addEventListener("click", function () {
+        //     const wagonNumber = this.getAttribute("data-wagon");
+        //     const wagonType = this.getAttribute("data-type");
+        //     const date = this.getAttribute("data-date");
+
+        //     // Update the current row data
+        //     if (currentRow !== null && rows[currentRow]) {
+        //       rows[currentRow].cells[2].querySelector(".wagon-number").value =
+        //         wagonNumber;
+        //       rows[currentRow].cells[3].querySelector(".wagon-Type").value =
+        //         wagonType;
+        //       rows[currentRow].cells[5].querySelector(".wagon-Date").value =
+        //         date;
+        //     }
+
+        //     // Hide the popup
+        //     popup.style.display = "none";
+        //   });
+        // });
+
+        // Close popup when clicking outside
+        popup.addEventListener("click", function (e) {
+          if (e.target === this) {
+            popup.style.display = "none";
+          }
+        });
+
+        // Header save icon functionality
+        document
+          .querySelector(".header-save")
+          .addEventListener("click", function () {
+            alert("All data saved!");
+          });
+      });
+
+      document.querySelector(".clear-btn").addEventListener("click", () => {
+        document.querySelector(".confirm").style.display = "block";
+        document.querySelector(".header-save").style.display = "block";
+        document.querySelector(".dis").style.display = "none";
+        document.querySelectorAll(".clear").forEach((el) => {
+          el.value = "";
+        });
+      });
+      document.querySelector(".clear-bt").addEventListener("click", () => {
+        document.querySelectorAll(".clear2").forEach((el) => {
+          el.value = "";
+        });
+      });
+      document.querySelector(".print").addEventListener("click", () => {
+        window.print();
+      });
+      document.querySelector(".print1").addEventListener("click", () => {
+        window.print();
+      });
+
+      const loadingCompletedButton = document.querySelector("#load");
+      const releaseDateInputs = document.querySelectorAll(".releasedate");
+      const releaseTimeInputs = document.querySelectorAll(".releasetime");
+
+      // Initially disable the Release Date and Release Time fields and clear their values
+      releaseDateInputs.forEach((input) => {
+        input.value = "";
+        input.disabled = true;
+      });
+      releaseTimeInputs.forEach((input) => {
+        input.value = "";
+        input.disabled = true;
+      });
+
+      // Enable and fill only the rows with wagon numbers when "Loading completed" is clicked
+      loadingCompletedButton.addEventListener("click", function () {
+        const now = new Date();
+        const today = now.toISOString().split("T")[0];
+        const time = now.toTimeString().slice(0, 5); // "HH:MM"
+
+        releaseDateInputs.forEach((input, idx) => {
+          // Find the corresponding wagon number input for this row
+          const wagonInput = document.querySelector(
+            `input[name="wagonNumber${idx}"]`
+          );
+          if (wagonInput && wagonInput.value.trim() !== "") {
+            input.value = today;
+            input.disabled = false;
+            releaseTimeInputs[idx].value = time;
+            releaseTimeInputs[idx].disabled = false;
+          }
+        });
+
+        document.querySelector(".wt").style.display = "block";
+      });
+      const locationButtons = document.querySelectorAll(".location-btn");
+      const popups = document.querySelectorAll(".popup-overlay");
+
+      locationButtons.forEach((button) => {
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const popupId = this.getAttribute("data-popup");
+          const popup = document.getElementById(popupId);
+          popup.style.display = "flex";
+        });
+      });
+      // Close popups when clicking outside
+      popups.forEach((popup) => {
+        popup.addEventListener("click", function (e) {
+          if (e.target === this) {
+            this.style.display = "none";
+          }
+        });
+      });
+
+      // Handle location selection
+      document.querySelectorAll(".popup-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          const code = this.getAttribute("data-code");
+          const desc = this.getAttribute("data-desc");
+          const popup = this.closest(".popup-overlay");
+
+          if (popup.id === "loadingPopup") {
+            document.querySelector(".loading-point").value = code;
+            document.querySelector(".loading-point-desc").value = desc;
+          } else if (popup.id === "unloadingPopup") {
+            document.querySelector(".unloading-point").value = code;
+            document.querySelector(".unloading-point-desc").value = desc;
+          }
+
+          popup.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>

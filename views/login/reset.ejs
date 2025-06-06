@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RINL-VSP - Reset Password</title>
+    <link rel="stylesheet" href="/reset-password.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <div class="header-content">
+          <div class="logo-section">
+            <i class="fas fa-industry"></i>
+            <div class="title-section">
+              <h1>RASHTRIYA ISPAT NIGAM LIMITED</h1>
+              <p>Visakhapatnam Steel Plant</p>
+            </div>
+          </div>
+          <div class="system-info">
+            <p>Material Management System</p>
+            <p class="update-info">Last Updated: May 2025</p>
+          </div>
+        </div>
+        <div class="sub-header">
+          <h2>RAKE PLACEMENT MEMO SYSTEM</h2>
+        </div>
+      </header>
+
+      <main class="reset-password-container">
+        <div class="reset-password-box">
+          <h2>Create New Password</h2>
+          <p class="instruction-text">Please enter your new password below.</p>
+
+          <form
+            action="/reset/<%= token %>"
+            method="POST"
+            class="reset-password-form"
+            id="resetForm"
+          >
+            <div class="form-group">
+              <label for="password">New Password</label>
+              <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your new password"
+                  required
+                  minlength="7"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  placeholder="Confirm your new password"
+                  required
+                  minlength="7"
+                />
+              </div>
+            </div>
+
+            <div class="show-password-toggle">
+              <label>
+                <input type="checkbox" id="showPassword" />
+                Show Password
+              </label>
+            </div>
+
+            <div class="password-requirements">
+              <p>Password must contain:</p>
+              <ul>
+                <li id="length">At least 7 characters</li>
+                <li id="uppercase">One uppercase letter</li>
+                <li id="lowercase">One lowercase letter</li>
+                <li id="special">One special character</li>
+              </ul>
+            </div>
+
+            <button type="submit" class="reset-button">Reset Password</button>
+
+            <div class="back-to-login">
+              <a href="/">← Back to Login</a>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer class="main-footer">
+        <p>
+          &copy; 2025 Rashtriya Ispat Nigam Limited - Visakhapatnam Steel Plant.
+          All rights reserved.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup" id="successPopup">
+      <div class="popup-content">
+        <i class="fas fa-check-circle"></i>
+        <h3>Password Reset Successful!</h3>
+        <p>Your password has been successfully updated.</p>
+      </div>
+    </div>
+
+    <script>
+      // Show/Hide Password Toggle
+      document
+        .getElementById("showPassword")
+        .addEventListener("change", function () {
+          const pwd = document.getElementById("password");
+          const confirmPwd = document.getElementById("confirm-password");
+          pwd.type = this.checked ? "text" : "password";
+          confirmPwd.type = this.checked ? "text" : "password";
+        });
+
+      // Password Validation
+      const form = document.getElementById("resetForm");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirm-password");
+
+      const requirements = [
+        { regex: /.{7,}/, element: "length" },
+        { regex: /[A-Z]/, element: "uppercase" },
+        { regex: /[a-z]/, element: "lowercase" },
+        { regex: /[^A-Za-z0-9]/, element: "special" },
+      ];
+
+      function validatePassword() {
+        const pwd = password.value;
+        let valid = true;
+
+        requirements.forEach((item) => {
+          const element = document.getElementById(item.element);
+          if (item.regex.test(pwd)) {
+            element.classList.add("valid");
+            element.classList.remove("invalid");
+          } else {
+            element.classList.add("invalid");
+            element.classList.remove("valid");
+            valid = false;
+          }
+        });
+
+        return valid;
+      }
+
+      password.addEventListener("input", validatePassword);
+      document
+        .querySelector(".reset-button")
+        .addEventListener("click", function (e) {
+          document.getElementById("successPopup").classList.add("show");
+
+          // Simulate form submission (replace with actual form submission)
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 3000);
+        });
+      //   form.addEventListener("submit", function (e) {
+      //     if (!validatePassword()) {
+      //       alert("Please ensure your password meets all requirements.");
+      //       e.preventDefault();
+      //       return;
+      //     }
+      //     if (password.value !== confirmPassword.value) {
+      //       alert("Passwords do not match!");
+      //       e.preventDefault();
+      //       return;
+      //     }
+      //     // If validation passes, allow normal form submission
+      //   });
+    </script>
+  </body>
+</html>

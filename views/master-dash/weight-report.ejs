@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/wt.css" />
+    <title>Weightment Requisition Report</title>
+  </head>
+  <body>
+    <div class="back">
+      <a href="/" style="text-decoration: none; color: #1e4976"> &larr; </a>
+    </div>
+    <h2>Weightment Requisition Report</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Placement Memo No.</th>
+          <th>Wagon No.</th>
+          <th>Challan No.</th>
+          <th>Loading Station</th>
+          <th>Unloading Station</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (memo && memo[0] && memo[0].wagons) {
+        memo[0].wagons.forEach(function(wagon){ %>
+        <tr>
+          <td><%= memo[0].memoNumber %></td>
+          <td><%= wagon.wagonNumber %></td>
+          <td><%= wagon.challan_number %></td>
+          <td><%= memo[0].loadingPoint.code %></td>
+          <td><%= memo[0].unloadingPoint.code %></td>
+        </tr>
+        <% }); } else { %>
+        <tr>
+          <td colspan="5">No data found</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <button class="wt">Weightment Report</button>
+    <script>
+      document.querySelector(".wt").addEventListener("click", function () {
+        window.print();
+      });
+    </script>
+  </body>
+</html>

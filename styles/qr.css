@@ -1,0 +1,208 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.main-header {
+  background: linear-gradient(to right, #1e4976, #2b5a8c);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-section i {
+  font-size: 2.5rem;
+  color: #ffd700;
+}
+
+.title-section h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.title-section p {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.system-info {
+  text-align: right;
+}
+
+.system-info .update-info {
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  margin-top: 0.25rem;
+}
+
+.sub-header {
+  background-color: #c75000;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.sub-header h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* QR Code Container Styles */
+.qr-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 73, 118, 0.1),
+    rgba(199, 80, 0, 0.1)
+  );
+}
+
+.qr-box {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  border-top: 4px solid #1e4976;
+}
+
+.qr-box h2 {
+  color: #1e4976;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.qr-img {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.qr-img img {
+  max-width: 200px;
+  height: auto;
+}
+
+.memo-info {
+  text-align: center;
+}
+
+.memo-number {
+  font-size: 1.1rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.qr-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1e4976;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background-color: #e8f0fe;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.qr-link:hover {
+  background-color: #1e4976;
+  color: white;
+}
+
+.instructions {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 4px;
+  color: #4a5568;
+}
+
+.instructions i {
+  color: #1e4976;
+  margin-right: 0.5rem;
+}
+
+/* Footer Styles */
+.main-footer {
+  background-color: #1e4976;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .system-info {
+    text-align: center;
+  }
+
+  .qr-box {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .title-section h1 {
+    font-size: 1.2rem;
+  }
+
+  .qr-img img {
+    max-width: 150px;
+  }
+}

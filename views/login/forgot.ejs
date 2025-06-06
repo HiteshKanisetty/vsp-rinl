@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RINL-VSP - Forgot Password</title>
+    <link rel="stylesheet" href="/forgot-password.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <div class="header-content">
+          <div class="logo-section">
+            <i class="fas fa-industry"></i>
+            <div class="title-section">
+              <h1>RASHTRIYA ISPAT NIGAM LIMITED</h1>
+              <p>Visakhapatnam Steel Plant</p>
+            </div>
+          </div>
+          <div class="system-info">
+            <p>Material Management System</p>
+            <p class="update-info">Last Updated: May 2025</p>
+          </div>
+        </div>
+        <div class="sub-header">
+          <h2>RAKE PLACEMENT MEMO SYSTEM</h2>
+        </div>
+      </header>
+
+      <main class="forgot-password-container">
+        <div class="forgot-password-box">
+          <h2>Reset Password</h2>
+          <p class="instruction-text">
+            Enter your email address below to receive password reset
+            instructions.
+          </p>
+
+          <form action="/forgot" method="POST" class="forgot-password-form">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your registered email"
+                  required
+                />
+              </div>
+            </div>
+
+            <% if (typeof message !== 'undefined') { %>
+            <div
+              class="message <%= message.includes('success') ? 'success' : 'error' %>"
+            >
+              <%= message %>
+            </div>
+            <% } %>
+
+            <button type="submit" class="reset-button">Send Reset Link</button>
+
+            <div class="back-to-login">
+              <a href="/">← Back to Login</a>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <footer class="main-footer">
+        <p>
+          &copy; 2025 Rashtriya Ispat Nigam Limited - Visakhapatnam Steel Plant.
+          All rights reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

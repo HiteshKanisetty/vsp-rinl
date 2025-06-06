@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+      .container {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        border-top: 4px solid #1e4976;
+      }
+
+      h1 {
+        color: #1e4976;
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      p {
+        color: #666;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2d3748;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #cbd5e0;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: all 0.2s;
+        background-color: white;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #1e4976;
+        box-shadow: 0 0 0 3px rgba(30, 73, 118, 0.1);
+      }
+
+      input::placeholder {
+        color: #a0aec0;
+      }
+
+      select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a5568' viewBox='0 0 16 16'%3E%3Cpath d='M8 10l4-4H4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #1e4976;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-top: 1rem;
+      }
+
+      .submit-btn:hover {
+        background-color: #2b5a8c;
+      }
+
+      .submit-btn:active {
+        transform: translateY(1px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 640px) {
+        .container {
+          padding: 1.5rem;
+          margin: 1rem;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+      a {
+        font-size: 2rem;
+      }
+      .back {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        text-decoration: none;
+        color: #1e4976;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="back">
+      <a href="/" style="text-decoration: none; color: #1e4976"> &larr; </a>
+    </div>
+    <div class="container">
+      <h1>Add New Wagon</h1>
+      <p>Fill in the details below to add a new wagon.</p>
+      <form action="/new-wagon" method="post">
+        <div class="form-group">
+          <label for="wagon-number">Wagon Number</label>
+          <input
+            type="text"
+            id="wagon-number"
+            name="wagonnumber"
+            placeholder="e.g. VSPCDY-01"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="wagon-type">Wagon Type</label>
+          <select id="wagon-type" name="wagontype" required>
+            <option value="">Select Type</option>
+            <option value="CDYBOST">CDYBOST</option>
+            <option value="BOXN">BOXN</option>
+            <option value="BCN">BCN</option>
+            <option value="BTPN">BTPN</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

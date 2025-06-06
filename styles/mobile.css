@@ -1,0 +1,288 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.main-header {
+  background: linear-gradient(to right, #1e4976, #2b5a8c);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-section i {
+  font-size: 2.5rem;
+  color: #ffd700;
+}
+
+.title-section h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.title-section p {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.system-info {
+  text-align: right;
+}
+
+.system-info .update-info {
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  margin-top: 0.25rem;
+}
+
+.sub-header {
+  background-color: #c75000;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.sub-header h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Memo Container Styles */
+.memo-container {
+  flex: 1;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 73, 118, 0.1),
+    rgba(199, 80, 0, 0.1)
+  );
+}
+
+.memo-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  border-top: 4px solid #1e4976;
+}
+
+.memo-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.memo-header h2 {
+  color: #1e4976;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.memo-number {
+  color: #c75000;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.memo-content {
+  padding: 1.5rem;
+}
+
+/* Info Section Styles */
+.info-section {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  min-width: 150px;
+  color: #4a5568;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-label i {
+  color: #1e4976;
+  width: 20px;
+}
+
+.info-value {
+  color: #2d3748;
+  flex: 1;
+}
+
+/* Wagons Section Styles */
+.wagons-section h3 {
+  color: #1e4976;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wagons-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.wagon-card {
+  background: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.wagon-header {
+  background: #1e4976;
+  color: white;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wagon-number {
+  font-weight: 600;
+}
+
+.wagon-type {
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.wagon-details {
+  padding: 1rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #2d3748;
+}
+
+/* Footer Styles */
+.main-footer {
+  background-color: #1e4976;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .system-info {
+    text-align: center;
+  }
+
+  .memo-container {
+    padding: 1rem;
+  }
+
+  .memo-box {
+    margin: 0;
+  }
+
+  .memo-header {
+    padding: 1rem;
+  }
+
+  .memo-content {
+    padding: 1rem;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .info-label {
+    min-width: auto;
+  }
+
+  .wagons-list {
+    grid-template-columns: 1fr;
+  }
+
+  .title-section h1 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wagon-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
