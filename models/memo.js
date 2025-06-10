@@ -28,6 +28,7 @@ const memoSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   acknowledged: { type: Boolean, default: false },
+  isUnloaded: { type: Boolean, default: false },
 });
 
 // Add index for frequently queried fields

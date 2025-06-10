@@ -89,6 +89,7 @@ exports.postmemo = async (req, res) => {
     } else {
       // Insert new memo
       const result = await Memo.insertOne(memo);
+
       return res.render("master-dash/newmemo.ejs", {
         title: "Memo Created",
         message: "The memo has been created successfully!",
@@ -125,9 +126,11 @@ exports.postLoadingCompleted = async (req, res) => {
 
     // Build updated wagons array from form data
     const wagons = [];
+    const assignedWagonNumbers = [];
     for (let i = 0; i < 11; i++) {
       const wagonNumber = req.body[`wagonNumber${i}`];
       if (wagonNumber && wagonNumber.trim() !== "") {
+        assignedWagonNumbers.push(wagonNumber);
         // Use challan number from form if present, else fallback to DB value
         let challan_number = req.body[`challanNumber${i}`];
         if (
@@ -150,6 +153,12 @@ exports.postLoadingCompleted = async (req, res) => {
         });
       }
     }
+
+    // Lock the assigned wagons for this memo
+    await Wagon.updateMany(
+      { wagonNumber: { $in: assignedWagonNumbers } },
+      { $set: { isLocked: true, lockedByMemo: memoNumber } }
+    );
 
     // Build update object
     const update = {
@@ -179,12 +188,8 @@ exports.postLoadingCompleted = async (req, res) => {
       });
     }
 
-    // Render the form with updated data
-    return res.render("master-dash/newmemo.ejs", {
-      title: "Memo Updated",
-      message: "The memo has been updated successfully!",
-      memo: result, // Pass the updated memo to the template
-    });
+    // Redirect to View 2
+    return res.redirect("/newmemo?view2=1");
   } catch (err) {
     console.error("Error updating memo:", err);
   }
@@ -236,7 +241,11 @@ exports.postnewwagon = async (req, res) => {
 };
 exports.getAllWagons = async (req, res) => {
   try {
-    const wagons = await Wagon.find({});
+    const currentMemoNumber = req.query.memoNumber; // Pass this from frontend!
+    let filter = {
+      $or: [{ isLocked: false }, { lockedByMemo: currentMemoNumber }],
+    };
+    const wagons = await Wagon.find(filter);
     res.json(wagons);
   } catch (err) {
     console.error("Error fetching wagons:", err);
@@ -300,7 +309,10 @@ exports.generateQR = async (req, res) => {
   const memoNumber = req.params.memoNumber;
   // The URL that will be encoded in the QR (mobile-friendly memo view)
   const ip = getLocalIp();
-  const qrDataUrl = `https://vsp-rinl-production.up.railway.app/mobile-memo/${memoNumber}`;
+  // ...existing code...
+  const qrDataUrl = `http://${ip}:2000/mobile-memo/${memoNumber}`;
+  // const qrDataUrl = `https://vsp-rinl-production.up.railway.app/mobile-memo/${memoNumber}`;
+  // ...existing code...
   try {
     const qrImage = await QRCode.toDataURL(qrDataUrl);
     res.render("master-dash/qr", {
@@ -320,5 +332,53 @@ exports.getmobile = async (req, res) => {
     res.render("master-dash/mobile-memo", { memo });
   } catch (err) {
     res.status(500).send("Server error");
+  }
+};
+exports.getNewMemo = async (req, res) => {
+  try {
+    const memoNumber = req.query.memoNumber;
+    let memo = {};
+    if (memoNumber) {
+      memo = await Memo.findOne({ memoNumber });
+    }
+    const showView2 = req.query.view2 === "1";
+    res.render("master-dash/newmemo.ejs", {
+      title: "Memo",
+      memo,
+      showView2,
+    });
+  } catch (err) {
+    res.status(500).render("error", {
+      title: "Error",
+      message: "An error occurred while loading the memo.",
+    });
+  }
+};
+
+exports.unloading = async (req, res) => {
+  try {
+    const { memoNumber } = req.body;
+    const memo = await Memo.findOne({ memoNumber });
+
+    if (!memo) return res.status(404).json({ error: "Memo not found" });
+
+    // Unlock wagons in Wagon DB
+    if (memo.wagons && memo.wagons.length > 0) {
+      const wagonNumbers = memo.wagons.map((w) => w.wagonNumber);
+      await Wagon.updateMany(
+        { wagonNumber: { $in: wagonNumbers } },
+        { $set: { isLocked: false, lockedByMemo: null } }
+      );
+    }
+
+    // DO NOT remove wagons from memo.wagons!
+    // memo.wagons = [];
+    memo.isUnloaded = true;
+    await memo.save();
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
   }
 };
