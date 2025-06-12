@@ -1,4 +1,6 @@
-# Rake Placement Memo Management System
+<img src="https://media.telanganatoday.com/wp-content/uploads/2022/01/RINL.jpg" alt="RINL Logo" width="300px"/>
+
+# Rake Placement Memo Management System   
 
 This project is a web-based application for managing railway wagon placement memos, acknowledgements, and related logistics. It features real-time wagon tracking, user authentication, dashboard insights, and robust data validation using Node.js, Express.js, MongoDB, and EJS.
 
@@ -158,3 +160,8 @@ Feel free to modify and extend as per your requirements.
 ---
 
 **Happy Coding!**
+
+## Authors
+
+- [@Hitesh Kanisetty](https://github.com/HiteshKanisetty)
+- [@Varun Donesh](https://github.com/Donesh7)
