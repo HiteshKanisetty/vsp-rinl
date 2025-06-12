@@ -12,7 +12,6 @@ This project is a web-based application for managing railway wagon placement mem
 - **Challan Management**: Manage challans with release dates and times.
 - **Dashboard**: Visual overview of loaded, unloaded, damaged, and under-maintenance wagons.
 - **Real-Time Updates**: Immediate status changes reflected in the UI.
-- **Audit Trails**: All changes are logged for traceability.
 - **Responsive UI**: Built with EJS templates and CSS.
 
 ---
