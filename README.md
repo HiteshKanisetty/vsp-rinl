@@ -47,7 +47,7 @@ This project is a web-based application for managing railway wagon placement mem
 ### 1. **Clone the Repository**
 
 ```sh
-git clone <your-repo-url>
+git clone [<your-repo-url>](https://github.com/HiteshKanisetty/vsp-rinl)
 cd vsp-rinl
 ```
 
