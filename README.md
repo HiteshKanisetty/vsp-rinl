@@ -1,6 +1,6 @@
 <img src="https://media.telanganatoday.com/wp-content/uploads/2022/01/RINL.jpg" alt="RINL Logo" width="300px"/>
 
-# Rake Placement Memo Management System   
+# Wagon Tracking System   
 
 This project is a web-based application for managing railway wagon placement memos, acknowledgements, and related logistics. It features real-time wagon tracking, user authentication, dashboard insights, and robust data validation using Node.js, Express.js, MongoDB, and EJS.
 
